@@ -8,3 +8,7 @@ Deactivating
 
 	deactivate
 
+# Dependencies
+
+numpy
+
