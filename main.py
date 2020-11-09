@@ -15,20 +15,20 @@ cfg = {
     'n_layers': 2,
     'h_dim': [10],
     'learning_rate': 1e-6,
-    'data_type': torch.float,
+    'data_type': torch.float32,
     'device': torch.device('cpu')
 }
 
 
 def optimistic_regressor_experiment():
     # Initialize model and data
-    model = cfgr.model_from_config(cfg)
     x, y, f = cfgr.data_from_config(cfg)
+    model = cfgr.model_from_config(cfg)
 
     # Fit
 
     # Plot
-    plot.plot_all(x, y, f, model)
+    plot.plot_all(x, y, f, model, cfg)
 
 
 if __name__ == "__main__":

@@ -8,14 +8,12 @@ import torch
 
 class NLayersNN(object):
 
-    def __init__(self, n_layers, in_dim, h_dim, out_dim, learning_rate):
+    def __init__(self, n_layers, in_dim, h_dim, out_dim, learning_rate, data_type, device):
         """
         :param in_dim: (int) input dimension
         :param h_dim: (int) hidden dimension
         :param out_dim: (int) output dimension
         """
-        data_type = torch.float
-        device = torch.device("cpu")
 
         self.n_layers = n_layers
         self.in_dim = in_dim
@@ -33,4 +31,5 @@ class NLayersNN(object):
         for i in range(self.n_layers - 1):
             h = h_relu.mm(self.w['w' + str(i)])
             h_relu = h.clamp(min=0)
+
         return h_relu.mm(self.w['w' + str(self.n_layers - 1)])
