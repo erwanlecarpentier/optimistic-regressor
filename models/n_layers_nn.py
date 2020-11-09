@@ -1,7 +1,8 @@
 """
-Two layers neural network
+N layers optimistic neural network
 """
 
+import numpy as np
 import torch
 
 
@@ -21,12 +22,15 @@ class NLayersNN(object):
         self.h_dim = h_dim
         self.out_dim = out_dim
         self.learning_rate = learning_rate
+        self.w = {}
 
+        sizes = np.concatenate(([in_dim], h_dim, [out_dim]), axis=0)
         for i in range(n_layers):
-            print(i)
-        # self.w1 = torch.randn(in_dim, h_dim, device=device, dtype=data_type)
-        # self.w2 = torch.randn(h_dim, out_dim, device=device, dtype=data_type)
+            self.w['w' + str(i)] = torch.randn(sizes[i], sizes[i+1], device=device, dtype=data_type, requires_grad=True)
 
     def predict(self, x):
-        # TODO
-        return x + self.learning_rate
+        h_relu = x  # tmp
+        for i in range(self.n_layers - 1):
+            h = h_relu.mm(self.w['w' + str(i)])
+            h_relu = h.clamp(min=0)
+        return h_relu.mm(self.w['w' + str(self.n_layers - 1)])
