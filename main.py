@@ -11,7 +11,7 @@ cfg = {
     'out_dim': 1,
     'function_name': 'quadratic',
     'batch_size': 10,
-    'model_name': 'n_layers_nn',
+    'model_name': 'onnn',  # nnn, onnn
     'n_layers': 3,
     'h_dim': [10, 10],
     'activation': 'sigmoid',  # sigmoid, relu

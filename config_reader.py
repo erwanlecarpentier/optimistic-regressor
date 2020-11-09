@@ -2,7 +2,8 @@ import numpy as np
 import torch
 
 import functions
-from models.n_layers_nn import NLayersNN
+from models.nnn import NLayersNN
+from models.onnn import OptimisticNLayersNN
 
 
 def data_from_config(config):
@@ -24,7 +25,22 @@ def data_from_config(config):
 
 
 def model_from_config(config):
-    if config['model_name'] == 'n_layers_nn':
+    if config['model_name'] == 'nnn':
+
+        n_layers = config['n_layers']
+        in_dim = config['in_dim']
+        h_dim = config['h_dim']
+        out_dim = config['out_dim']
+        learning_rate = config['learning_rate']
+        activation = config['activation']
+        data_type = config['data_type']
+        device = config['device']
+
+        return NLayersNN(n_layers=n_layers, in_dim=in_dim, h_dim=h_dim, out_dim=out_dim,
+                         learning_rate=learning_rate, activation=activation, data_type=data_type,
+                         device=device)
+
+    if config['model_name'] == 'onnn':
 
         n_layers = config['n_layers']
         in_dim = config['in_dim']
