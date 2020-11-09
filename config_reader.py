@@ -42,11 +42,9 @@ def model_from_config(config):
                          device=device)
 
     if config['model_name'] == 'onnn':
-        ratio_optimistic_points = config['ratio_optimistic_points']
-        optimistic_x_sampling_method = config['optimistic_x_sampling_method']
+        ratio_uniform_input = config['ratio_uniform_input']
 
         return OptimisticNLayersNN(n_layers=n_layers, in_dim=in_dim, h_dim=h_dim, out_dim=out_dim,
                                    learning_rate=learning_rate, activation=activation,
                                    data_type=data_type, device=device,
-                                   ratio_optimistic_points=ratio_optimistic_points,
-                                   optimistic_x_sampling_method=optimistic_x_sampling_method)
+                                   ratio_uniform_input=ratio_uniform_input)

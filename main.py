@@ -14,13 +14,12 @@ cfg = {
     'x_max': 0.5,  # Only for sampling domain, real domain is [0, 1]
     'batch_size': 10,
     'model_name': 'onnn',  # nnn, onnn
-    'n_layers': 3,
-    'h_dim': [10, 10],
+    'n_layers': 4,
+    'h_dim': [10, 10, 10],
     'activation': 'sigmoid',  # sigmoid, relu
     'learning_rate': 1e-2,
     'n_pass': 10000,
-    'ratio_optimistic_points': 1.0,
-    'optimistic_x_sampling_method': 'random',
+    'ratio_uniform_input': 1.0,
     'data_type': torch.float32,
     'device': torch.device('cpu'),
 }
