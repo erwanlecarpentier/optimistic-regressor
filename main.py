@@ -10,6 +10,8 @@ cfg = {
     'in_dim': 1,
     'out_dim': 1,
     'function_name': 'quadratic',
+    'x_min': 0.0,  # Only for sampling domain, real domain is [0, 1]
+    'x_max': 0.5,  # Only for sampling domain, real domain is [0, 1]
     'batch_size': 10,
     'model_name': 'onnn',  # nnn, onnn
     'n_layers': 3,
@@ -17,8 +19,10 @@ cfg = {
     'activation': 'sigmoid',  # sigmoid, relu
     'learning_rate': 1e-2,
     'n_pass': 10000,
+    'ratio_optimistic_points': 1.0,
+    'optimistic_x_sampling_method': 'random',
     'data_type': torch.float32,
-    'device': torch.device('cpu')
+    'device': torch.device('cpu'),
 }
 
 

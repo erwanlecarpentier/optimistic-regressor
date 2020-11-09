@@ -9,6 +9,8 @@ from models.onnn import OptimisticNLayersNN
 def data_from_config(config):
     if config['function_name'] == 'quadratic':
         in_dim = config['in_dim']
+        x_min = config['x_min']
+        x_max = config['x_max']
         batch_size = config['batch_size']
         out_dim = config['out_dim']
         data_type = config['data_type']
@@ -17,7 +19,7 @@ def data_from_config(config):
         # TODO handle out_dim in this case
         assert in_dim == out_dim
 
-        x = torch.rand(batch_size, in_dim, device=device, dtype=data_type)
+        x = torch.rand(batch_size, in_dim, device=device, dtype=data_type) * (x_max - x_min) + x_min
         f = functions.Quadratic()
         y = f.predict(x)
 
@@ -25,32 +27,26 @@ def data_from_config(config):
 
 
 def model_from_config(config):
+    n_layers = config['n_layers']
+    in_dim = config['in_dim']
+    h_dim = config['h_dim']
+    out_dim = config['out_dim']
+    learning_rate = config['learning_rate']
+    activation = config['activation']
+    data_type = config['data_type']
+    device = config['device']
+
     if config['model_name'] == 'nnn':
-
-        n_layers = config['n_layers']
-        in_dim = config['in_dim']
-        h_dim = config['h_dim']
-        out_dim = config['out_dim']
-        learning_rate = config['learning_rate']
-        activation = config['activation']
-        data_type = config['data_type']
-        device = config['device']
-
         return NLayersNN(n_layers=n_layers, in_dim=in_dim, h_dim=h_dim, out_dim=out_dim,
                          learning_rate=learning_rate, activation=activation, data_type=data_type,
                          device=device)
 
     if config['model_name'] == 'onnn':
+        ratio_optimistic_points = config['ratio_optimistic_points']
+        optimistic_x_sampling_method = config['optimistic_x_sampling_method']
 
-        n_layers = config['n_layers']
-        in_dim = config['in_dim']
-        h_dim = config['h_dim']
-        out_dim = config['out_dim']
-        learning_rate = config['learning_rate']
-        activation = config['activation']
-        data_type = config['data_type']
-        device = config['device']
-
-        return NLayersNN(n_layers=n_layers, in_dim=in_dim, h_dim=h_dim, out_dim=out_dim,
-                         learning_rate=learning_rate, activation=activation, data_type=data_type,
-                         device=device)
+        return OptimisticNLayersNN(n_layers=n_layers, in_dim=in_dim, h_dim=h_dim, out_dim=out_dim,
+                                   learning_rate=learning_rate, activation=activation,
+                                   data_type=data_type, device=device,
+                                   ratio_optimistic_points=ratio_optimistic_points,
+                                   optimistic_x_sampling_method=optimistic_x_sampling_method)
