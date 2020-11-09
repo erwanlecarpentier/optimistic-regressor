@@ -33,3 +33,24 @@ class NLayersNN(object):
             h_relu = h.clamp(min=0)
 
         return h_relu.mm(self.w['w' + str(self.n_layers - 1)])
+
+    def train(self, x, y, n_pass=1000, verbose=True):
+        for t in range(n_pass):
+            # Predict
+            y_pred = self.predict(x)
+
+            # Compute loss
+            loss = (y_pred - y).pow(2).sum()
+            if verbose and t % 100 == 99:
+                print('Iteration: ', t+1, '  loss:', loss.item())
+
+            # Backward pass
+            loss.backward()
+
+            # Update weights
+            with torch.no_grad():
+                for i in range(self.n_layers):
+                    self.w['w' + str(i)] -= self.learning_rate * self.w['w' + str(i)].grad
+
+                    # Manually zero the gradients after updating weights
+                    self.w['w' + str(i)].grad.zero_()

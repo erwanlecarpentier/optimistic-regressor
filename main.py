@@ -26,6 +26,7 @@ def optimistic_regressor_experiment():
     model = cfgr.model_from_config(cfg)
 
     # Fit
+    model.train(x, y, n_pass=1000)
 
     # Plot
     plot.plot_all(x, y, f, model, cfg)
