@@ -12,9 +12,11 @@ cfg = {
     'function_name': 'quadratic',
     'batch_size': 10,
     'model_name': 'n_layers_nn',
-    'n_layers': 2,
-    'h_dim': [10],
-    'learning_rate': 1e-6,
+    'n_layers': 3,
+    'h_dim': [10, 10],
+    'activation': 'sigmoid',  # sigmoid, relu
+    'learning_rate': 1e-2,
+    'n_pass': 10000,
     'data_type': torch.float32,
     'device': torch.device('cpu')
 }
@@ -26,7 +28,7 @@ def optimistic_regressor_experiment():
     model = cfgr.model_from_config(cfg)
 
     # Fit
-    model.train(x, y, n_pass=1000)
+    model.train(x, y, n_pass=cfg['n_pass'])
 
     # Plot
     plot.plot_all(x, y, f, model, cfg)

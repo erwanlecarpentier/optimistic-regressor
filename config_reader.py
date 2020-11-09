@@ -31,7 +31,10 @@ def model_from_config(config):
         h_dim = config['h_dim']
         out_dim = config['out_dim']
         learning_rate = config['learning_rate']
+        activation = config['activation']
         data_type = config['data_type']
         device = config['device']
 
-        return NLayersNN(n_layers, in_dim, h_dim, out_dim, learning_rate, data_type, device)
+        return NLayersNN(n_layers=n_layers, in_dim=in_dim, h_dim=h_dim, out_dim=out_dim,
+                         learning_rate=learning_rate, activation=activation, data_type=data_type,
+                         device=device)

@@ -8,7 +8,7 @@ import torch
 
 class NLayersNN(object):
 
-    def __init__(self, n_layers, in_dim, h_dim, out_dim, learning_rate, data_type, device):
+    def __init__(self, n_layers, in_dim, h_dim, out_dim, learning_rate, activation, data_type, device):
         """
         :param in_dim: (int) input dimension
         :param h_dim: (int) hidden dimension
@@ -20,19 +20,27 @@ class NLayersNN(object):
         self.h_dim = h_dim
         self.out_dim = out_dim
         self.learning_rate = learning_rate
+        self.activation = activation
         self.w = {}
+
+        self.data_type = data_type
+        self.device = device
 
         sizes = np.concatenate(([in_dim], h_dim, [out_dim]), axis=0)
         for i in range(n_layers):
             self.w['w' + str(i)] = torch.randn(sizes[i], sizes[i+1], device=device, dtype=data_type, requires_grad=True)
 
     def predict(self, x):
-        h_relu = x  # tmp
+        h_act = x  # tmp
         for i in range(self.n_layers - 1):
-            h = h_relu.mm(self.w['w' + str(i)])
-            h_relu = h.clamp(min=0)
+            h = h_act.mm(self.w['w' + str(i)])
 
-        return h_relu.mm(self.w['w' + str(self.n_layers - 1)])
+            if self.activation == 'relu':
+                h_act = h.clamp(min=0)
+            if self.activation == 'sigmoid':
+                h_act = torch.sigmoid(h)
+
+        return h_act.mm(self.w['w' + str(self.n_layers - 1)])
 
     def train(self, x, y, n_pass=1000, verbose=True):
         for t in range(n_pass):
