@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import torch
 
 import plot
-import config_reader as cfgr
-
+import utils.config_reader as cfgr
+import utils.trainer as tr
 
 cfg = {
     'in_dim': 1,
@@ -31,7 +31,8 @@ def optimistic_regressor_experiment():
     model = cfgr.model_from_config(cfg)
 
     # Fit
-    model.my_train(x, y, n_pass=cfg['n_pass'])
+    # model.my_train(x, y, n_pass=cfg['n_pass'])
+    tr.train(model, x, y, n_pass=cfg['n_pass'])
 
     # Plot
     plot.plot_all(x, y, f, model, cfg)
