@@ -14,9 +14,9 @@ cfg = {
     'x_max': 0.5,  # Only for sampling domain, real domain is [0, 1]
     'batch_size': 10,
     'model_name': 'onnn',  # nnn, onnn
-    'n_layers': 4,
-    'h_dim': [10, 10, 10],
-    'activation': 'sigmoid',  # sigmoid, relu
+    'n_layers': 2,
+    'h_dim': [10],  # Hidden layer(s) dimension(s)
+    'activation': 'relu',  # sigmoid, relu
     'learning_rate': 1e-2,
     'n_pass': 10000,
     'ratio_uniform_input': 1.0,
@@ -31,7 +31,7 @@ def optimistic_regressor_experiment():
     model = cfgr.model_from_config(cfg)
 
     # Fit
-    model.train(x, y, n_pass=cfg['n_pass'])
+    model.my_train(x, y, n_pass=cfg['n_pass'])
 
     # Plot
     plot.plot_all(x, y, f, model, cfg)

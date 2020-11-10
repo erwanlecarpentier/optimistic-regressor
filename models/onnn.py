@@ -39,7 +39,7 @@ class OptimisticNLayersNN(NLayersNN):
 
         return x_opt, y_opt
 
-    def predict(self, x):
+    def forward(self, x):
         h_act = x  # tmp
         for i in range(self.n_layers - 1):
             h = h_act.mm(self.w['w' + str(i)])
@@ -51,13 +51,13 @@ class OptimisticNLayersNN(NLayersNN):
 
         return 1.0 - h_act.mm(self.w['w' + str(self.n_layers - 1)])
 
-    def train(self, x, y, n_pass=1000, verbose=True):
+    def my_train(self, x, y, n_pass=1000, verbose=True):
 
         x_u = self.generate_uniform_input(x)
 
         for t in range(n_pass):
             # Predict
-            y_pred = self.predict(x)
+            y_pred = self.forward(x)
 
             # Compute loss
             # loss = (y - y_pred).pow(2).sum()
@@ -65,7 +65,7 @@ class OptimisticNLayersNN(NLayersNN):
 
             '''Second pass'''
             # Predict
-            y_pred = self.predict(x_u)
+            y_pred = self.forward(x_u)
 
             # Compute loss
             loss += (1.0 - y_pred).pow(2).sum()

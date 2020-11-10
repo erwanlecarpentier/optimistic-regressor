@@ -13,8 +13,8 @@ def plot_all(x, y, f, model, config):
     x_ref_as_tensor = torch.from_numpy(x_ref)
     x_ref_as_tensor = x_ref_as_tensor.type(data_type)
 
-    y_ref = f.predict(x_ref_as_tensor)
-    y_pred = model.predict(x_ref_as_tensor)
+    y_ref = f.forward(x_ref_as_tensor)
+    y_pred = model.forward(x_ref_as_tensor)
 
     fig, ax = plt.subplots()
 

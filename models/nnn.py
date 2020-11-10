@@ -6,7 +6,7 @@ import numpy as np
 import torch
 
 
-class NLayersNN(object):
+class NLayersNN(torch.nn.Module):
 
     def __init__(self, n_layers, in_dim, h_dim, out_dim, learning_rate, activation, data_type, device):
         """
@@ -14,6 +14,7 @@ class NLayersNN(object):
         :param h_dim: (int) hidden dimension
         :param out_dim: (int) output dimension
         """
+        super(NLayersNN, self).__init__()
 
         self.n_layers = n_layers
         self.in_dim = in_dim
@@ -21,31 +22,36 @@ class NLayersNN(object):
         self.out_dim = out_dim
         self.learning_rate = learning_rate
         self.activation = activation
-        self.w = {}
 
         self.data_type = data_type
         self.device = device
 
+        # sizes = np.concatenate(([in_dim], h_dim, [out_dim]), axis=0)
+        # for i in range(n_layers):
+        # self.w['w' + str(i)] = torch.randn(sizes[i], sizes[i+1], device=device, dtype=data_type, requires_grad=True)
+
+        # Initialize layers
+        self.layers = {}
         sizes = np.concatenate(([in_dim], h_dim, [out_dim]), axis=0)
         for i in range(n_layers):
-            self.w['w' + str(i)] = torch.randn(sizes[i], sizes[i+1], device=device, dtype=data_type, requires_grad=True)
+            self.layers['l' + str(i)] = torch.nn.Linear(sizes[i], sizes[i+1])
 
-    def predict(self, x):
+    def forward(self, x):
         h_act = x  # tmp
         for i in range(self.n_layers - 1):
-            h = h_act.mm(self.w['w' + str(i)])
+            h = self.n_layers['l' + str(i)](h_act)
 
             if self.activation == 'relu':
                 h_act = h.clamp(min=0)
             if self.activation == 'sigmoid':
                 h_act = torch.sigmoid(h)
 
-        return h_act.mm(self.w['w' + str(self.n_layers - 1)])
+        return self.n_layers['l' + str(self.n_layers - 1)](h_act)
 
-    def train(self, x, y, n_pass=1000, verbose=True):
+    def my_train(self, x, y, n_pass=1000, verbose=True):
         for t in range(n_pass):
             # Predict
-            y_pred = self.predict(x)
+            y_pred = self.forward(x)
 
             # Compute loss
             loss = (y_pred - y).pow(2).sum()
