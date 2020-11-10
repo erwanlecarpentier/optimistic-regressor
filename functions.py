@@ -3,5 +3,5 @@ import numpy as np
 
 class Quadratic(object):
 
-    def predict(self, x):
+    def forward(self, x):
         return x * x

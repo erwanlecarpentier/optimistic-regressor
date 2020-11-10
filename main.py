@@ -11,13 +11,13 @@ cfg = {
     'out_dim': 1,
     'function_name': 'quadratic',
     'x_min': 0.0,  # Only for sampling domain, real domain is [0, 1]
-    'x_max': 0.5,  # Only for sampling domain, real domain is [0, 1]
-    'batch_size': 10,
-    'model_name': 'onnn',  # nnn, onnn
+    'x_max': 1.0,  # Only for sampling domain, real domain is [0, 1]
+    'batch_size': 100,
+    'model_name': 'nnn',  # nnn, onnn
     'n_layers': 2,
     'h_dim': [10],  # Hidden layer(s) dimension(s)
     'activation': 'relu',  # sigmoid, relu
-    'learning_rate': 1e-2,
+    'learning_rate': 1e-3,
     'n_pass': 10000,
     'ratio_uniform_input': 1.0,
     'data_type': torch.float32,

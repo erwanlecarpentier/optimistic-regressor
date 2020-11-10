@@ -31,12 +31,19 @@ class NLayersNN(torch.nn.Module):
         # self.w['w' + str(i)] = torch.randn(sizes[i], sizes[i+1], device=device, dtype=data_type, requires_grad=True)
 
         # Initialize layers
+        '''
         self.layers = {}
         sizes = np.concatenate(([in_dim], h_dim, [out_dim]), axis=0)
         for i in range(n_layers):
             self.layers['l' + str(i)] = torch.nn.Linear(sizes[i], sizes[i+1])
+        '''
+        s = 10
+        self.linear1 = torch.nn.Linear(in_dim, s)
+        self.linear2 = torch.nn.Linear(s, s)
+        self.linear3 = torch.nn.Linear(s, out_dim)
 
     def forward(self, x):
+        '''
         h_act = x  # tmp
         for i in range(self.n_layers - 1):
             h = self.n_layers['l' + str(i)](h_act)
@@ -47,6 +54,11 @@ class NLayersNN(torch.nn.Module):
                 h_act = torch.sigmoid(h)
 
         return self.n_layers['l' + str(self.n_layers - 1)](h_act)
+        '''
+        h = self.linear1(x).clamp(min=0)
+        h = self.linear2(h).clamp(min=0)
+        y_pred = self.linear3(h)
+        return y_pred
 
     def my_train(self, x, y, n_pass=1000, verbose=True):
         for t in range(n_pass):

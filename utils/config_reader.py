@@ -21,7 +21,7 @@ def data_from_config(config):
 
         x = torch.rand(batch_size, in_dim, device=device, dtype=data_type) * (x_max - x_min) + x_min
         f = functions.Quadratic()
-        y = f.predict(x)
+        y = f.forward(x)
 
         return x, y, f
 

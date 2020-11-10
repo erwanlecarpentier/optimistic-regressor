@@ -18,9 +18,9 @@ def plot_all(x, y, f, model, config):
 
     fig, ax = plt.subplots()
 
-    ax.plot(x_ref, y_pred.detach().numpy(), 'darkorange', label='Model')
     ax.plot(x_ref, y_ref.numpy(), 'teal', label='True function')
     ax.scatter(x.numpy(), y.numpy(), c='teal', label='Data', alpha=1.0, edgecolors='none')
+    ax.plot(x_ref, y_pred.detach().numpy(), 'darkorange', label='Model')
 
     handles, labels = ax.get_legend_handles_labels()
     handles = [handles[0], handles[2], handles[1]]
