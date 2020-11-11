@@ -48,4 +48,5 @@ def optimistic_regressor_experiment(config):
 
 
 if __name__ == "__main__":
+    
     optimistic_regressor_experiment(CONFIG)

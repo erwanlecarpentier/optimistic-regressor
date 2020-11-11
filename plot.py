@@ -20,9 +20,12 @@ def save_fig_and_config(config, verbose=True):
         if verbose:
             print("Successfully created the directory %s " % path)
 
-    # Save config at directory
+    # Save config
     with open(path + '/config.txt', 'w') as f:
         print(config, file=f)
+
+    # Save figure
+    plt.savefig(path + '/fig.png')
 
 
 def plot(x, y, f, model, config, show=True, export=False):
