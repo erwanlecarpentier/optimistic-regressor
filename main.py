@@ -31,9 +31,6 @@ def optimistic_regressor_experiment(config):
     model = cfg_handler.model_from_config(config)
     is_optimistic = config['is_optimistic']
 
-    plot.plot(x, y, f, model, config, show=False, export=True)
-    exit()
-
     # Fit
     if is_optimistic:
         tr.optimistic_train(model, x, y, n_pass=config['n_pass'],
@@ -47,5 +44,14 @@ def optimistic_regressor_experiment(config):
     plot.plot(x, y, f, model, config, show=False, export=True)
 
 
+def grid_search(config):
+    ratios = [0.1, 0.5, 1.0]
+
+    for r in ratios:
+        CONFIG['ratio_uniform_input'] = r
+        optimistic_regressor_experiment(config)
+
+
 if __name__ == "__main__":
-    optimistic_regressor_experiment(CONFIG)
+    # optimistic_regressor_experiment(CONFIG)
+    grid_search(CONFIG)
