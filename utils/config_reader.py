@@ -45,5 +45,4 @@ def model_from_config(config):
 
     if config['model_name'] == 'n_layers_nn':
         return NLayersNN(n_layers=n_layers, in_dim=in_dim, h_dim=h_dim, out_dim=out_dim,
-                         learning_rate=learning_rate, activation=activation, data_type=data_type,
-                         device=device)
+                         activation=activation)
