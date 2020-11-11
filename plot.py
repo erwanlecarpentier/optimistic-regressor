@@ -8,7 +8,7 @@ def plot(x, y, f, model, config):
 
     # TODO handle higher dimensions
 
-    x_ref = np.arange(0.0, 1.05, 0.05, dtype=float)
+    x_ref = np.arange(0.0, 1.05, 0.01, dtype=float)
     x_ref = x_ref.reshape((x_ref.shape[0], 1))
     x_ref_as_tensor = torch.from_numpy(x_ref)
     x_ref_as_tensor = x_ref_as_tensor.type(data_type)
