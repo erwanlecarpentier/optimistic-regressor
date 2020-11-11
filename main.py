@@ -45,11 +45,14 @@ def optimistic_regressor_experiment(config):
 
 
 def grid_search(config):
-    ratios = [0.1, 0.5, 1.0]
+    ratios = [0.1, 0.5, 1.0, 1.5, 2.0]
+    alphas = [0.1, 0.5, 1.0, 1.5, 2.0]
 
     for r in ratios:
-        CONFIG['ratio_uniform_input'] = r
-        optimistic_regressor_experiment(config)
+        for a in alphas:
+            config['ratio_uniform_input'] = r
+            config['alpha'] = a
+            optimistic_regressor_experiment(config)
 
 
 if __name__ == "__main__":
