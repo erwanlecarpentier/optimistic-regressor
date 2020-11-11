@@ -19,9 +19,10 @@ def generate_uniform_input(x, ratio_uniform_input=1.0):
     return torch.rand(n_optimistic_data, input_dimension, device=x.device, dtype=x.dtype)
 
 
-def optimistic_train(model, x, y, n_pass):
+def optimistic_train(model, x, y, n_pass, ratio_uniform_input):
     optimizer = torch.optim.SGD(model.parameters(), lr=1e-4)
-    x_uniform = generate_uniform_input(x, ratio_uniform_input=1.0)
+    x_uniform = generate_uniform_input(x, ratio_uniform_input=ratio_uniform_input)
+    alpha = 0.1
 
     for t in range(n_pass):
         # Forward pass
@@ -30,7 +31,7 @@ def optimistic_train(model, x, y, n_pass):
 
         # Compute and print loss
         # loss = optimistic_loss(y_pred, y, y_uniform)
-        loss = ((y_pred - (1.0 - y)).pow(2) - y_pred.pow(2)).sum() + y_uniform.pow(2).sum()
+        loss = ((y_pred - (1.0 - y)).pow(2) - alpha * y_pred.pow(2)).sum() + alpha * y_uniform.pow(2).sum()
 
         if t % 100 == 99:
             print(t+1, loss.item())

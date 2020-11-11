@@ -1,14 +1,36 @@
 # Optimistic Regressor
 
-Activating
+## Principle 
+
+Notations:
+
+Empirical distribution:
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;q" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" /><br/>
+Target:
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;f = y_{max} - y" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
+
+
+,e.g.,
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;f = \frac{1}{1-\gamma} - \left(r + \gamma \max_{a'} Q(s', a')\right)" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" /><br/>
+
+
+
+Optimistic loss:
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;L(\theta)=\|f - f_{\theta}(x)\|_{2, q}^2 +" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" /><br/>
+
+## Using venv python library
+
+For venv documentation: [click here](https://docs.python.org/3/library/venv.html)  
+Activating:
 
 	source ./venv/bin/activate
 	
-Deactivating
+Deactivating:
 
 	deactivate
 
-# Dependencies
+## Dependencies
 
 | Package | Version |
 | ----------- | ----------- |
