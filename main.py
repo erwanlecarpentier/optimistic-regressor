@@ -14,6 +14,7 @@ cfg = {
     'x_max': 0.5,  # Only for sampling domain, real domain is [0, 1]
     'batch_size': 1000,
     'model_name': 'three_layers_nn',  # three_layers_nn, n_layers_nn
+    'is_optimistic': False,
     'n_layers': 2,  # Parameter for n_layers_nn
     'h_dim': [10, 10],  # Hidden layer(s) dimension(s)
     'activation': 'relu',  # sigmoid, relu
@@ -29,14 +30,16 @@ def optimistic_regressor_experiment():
     # Initialize model and data
     x, y, f = cfgr.data_from_config(cfg)
     model = cfgr.model_from_config(cfg)
+    is_optimistic = cfg['is_optimistic']
 
     # Fit
-    # model.my_train(x, y, n_pass=cfg['n_pass'])
-    # tr.train(model, x, y, n_pass=cfg['n_pass'])
-    tr.optimistic_train(model, x, y, n_pass=cfg['n_pass'])
+    if is_optimistic:
+        tr.optimistic_train(model, x, y, n_pass=cfg['n_pass'])
+    else:
+        tr.train(model, x, y, n_pass=cfg['n_pass'])
 
     # Plot
-    plot.plot_all(x, y, f, model, cfg)
+    plot.plot(x, y, f, model, cfg)
 
 
 if __name__ == "__main__":

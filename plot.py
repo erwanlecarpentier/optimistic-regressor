@@ -3,7 +3,7 @@ import torch
 import matplotlib.pyplot as plt
 
 
-def plot_all(x, y, f, model, config):
+def plot(x, y, f, model, config):
     data_type = config['data_type']
 
     # TODO handle higher dimensions
@@ -15,6 +15,9 @@ def plot_all(x, y, f, model, config):
 
     y_ref = f.forward(x_ref_as_tensor)
     y_pred = model.forward(x_ref_as_tensor)
+
+    if config['is_optimistic']:
+        y_pred = 1.0 - y_pred
 
     fig, ax = plt.subplots()
 

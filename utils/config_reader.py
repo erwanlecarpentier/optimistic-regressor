@@ -40,8 +40,6 @@ def model_from_config(config):
         return ThreeLayersNN(in_dim=in_dim, out_dim=out_dim, h_dim=h_dim,activation=activation)
 
     if config['model_name'] == 'n_layers_nn':
-        ratio_uniform_input = config['ratio_uniform_input']
-
         return NLayersNN(n_layers=n_layers, in_dim=in_dim, h_dim=h_dim, out_dim=out_dim,
                          learning_rate=learning_rate, activation=activation, data_type=data_type,
                          device=device)
