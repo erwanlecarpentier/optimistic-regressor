@@ -5,19 +5,20 @@
 Notations:
 
 Empirical distribution:
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;q" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" /><br/>
+
+    q
+    
 Target:
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;f = y_{max} - y" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
 
-
+    f = y_{max} - y
+    
 ,e.g.,
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;f = \frac{1}{1-\gamma} - \left(r + \gamma \max_{a'} Q(s', a')\right)" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" /><br/>
 
-
+    f = \frac{1}{1-\gamma} - \left(r + \gamma \max_{a'} Q(s', a')\right)
 
 Optimistic loss:
 
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;L(\theta)=\|f - f_{\theta}(x)\|_{2, q}^2 +" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" /><br/>
+    L(\theta) = \|f - f_{\theta}(x)\|_{2, q}^2 + \alpha \|f_{\theta}(x)\|_{2, 1 - q}^2
 
 ## Using venv python library
 
