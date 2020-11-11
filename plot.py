@@ -1,9 +1,31 @@
+import os
+
+
 import numpy as np
 import torch
 import matplotlib.pyplot as plt
 
 
-def plot(x, y, f, model, config):
+def save_fig_and_config(config, verbose=True):
+
+    # Create directory
+    exp_dir = 'exp_alpha_' + str(config['alpha']) + '_ratio_' + str(config['ratio_uniform_input'])
+    path = 'results/' + exp_dir
+    try:
+        os.mkdir(path)
+    except OSError:
+        if verbose:
+            print("Creation of the directory %s failed" % path)
+    else:
+        if verbose:
+            print("Successfully created the directory %s " % path)
+
+    # Save config at directory
+    with open(path + '/config.txt', 'w') as f:
+        print(config, file=f)
+
+
+def plot(x, y, f, model, config, show=True, export=False):
     data_type = config['data_type']
 
     # TODO handle higher dimensions
@@ -35,4 +57,8 @@ def plot(x, y, f, model, config):
     ax.set_ylabel('Output')
     ax.grid(True)
 
-    plt.show()
+    if show:
+        plt.show()
+
+    if export:
+        save_fig_and_config(config)

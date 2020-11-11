@@ -31,18 +31,14 @@ def data_from_config(config):
 
 
 def model_from_config(config):
-    n_layers = config['n_layers']
     in_dim = config['in_dim']
     h_dim = config['h_dim']
     out_dim = config['out_dim']
-    learning_rate = config['learning_rate']
     activation = config['activation']
-    data_type = config['data_type']
-    device = config['device']
 
     if config['model_name'] == 'three_layers_nn':
         return ThreeLayersNN(in_dim=in_dim, out_dim=out_dim, h_dim=h_dim,activation=activation)
 
     if config['model_name'] == 'n_layers_nn':
-        return NLayersNN(n_layers=n_layers, in_dim=in_dim, h_dim=h_dim, out_dim=out_dim,
+        return NLayersNN(in_dim=in_dim, h_dim=h_dim, out_dim=out_dim,
                          activation=activation)
