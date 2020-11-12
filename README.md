@@ -19,16 +19,18 @@ Target:
 Optimistic loss:
 
     L(\theta) = \|f - f_{\theta}(x)\|_{2, q}^2 + \alpha \|f_{\theta}(x)\|_{2, 1 - q}^2
+    
+$L(\theta) = \|f - f_{\theta}(x)\|_{2, q}^2 + \alpha \|f_{\theta}(x)\|_{2, 1 - q}^2$
 
 ## Some results
 
 |  | alpha = 0.1 | alpha = 0.5 | alpha = 1.0 | alpha = 1.5 | alpha = 2.0|
 | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
-| ratio = 0.1 | ![](results/exp_alpha_0.1_ratio_0.1/fig.png) | ![](results/exp_alpha_0.5_ratio_0.1/fig.png)|![](results/exp_alpha_1.0_ratio_0.1/fig.png) | ![](results/exp_alpha_1.5_ratio_0.1/fig.png)| ![](results/exp_alpha_2.0_ratio_0.1/fig.png)|
-| ratio = 0.5 | ![](results/exp_alpha_0.1_ratio_0.5/fig.png) | ![](results/exp_alpha_0.5_ratio_0.5/fig.png)|![](results/exp_alpha_1.0_ratio_0.5/fig.png) | ![](results/exp_alpha_1.5_ratio_0.5/fig.png)| ![](results/exp_alpha_2.0_ratio_0.5/fig.png)|
-| ratio = 1.0 | ![](results/exp_alpha_0.1_ratio_1.0/fig.png) | ![](results/exp_alpha_0.5_ratio_1.0/fig.png)|![](results/exp_alpha_1.0_ratio_1.0/fig.png) | ![](results/exp_alpha_1.5_ratio_1.0/fig.png)| ![](results/exp_alpha_2.0_ratio_1.0/fig.png)|
-| ratio = 1.5 | ![](results/exp_alpha_0.1_ratio_1.5/fig.png) | ![](results/exp_alpha_0.5_ratio_1.5/fig.png)|![](results/exp_alpha_1.0_ratio_1.5/fig.png) | ![](results/exp_alpha_1.5_ratio_1.5/fig.png)| ![](results/exp_alpha_2.0_ratio_1.5/fig.png)|
-| ratio = 2.0 | ![](results/exp_alpha_0.1_ratio_2.0/fig.png) | ![](results/exp_alpha_0.5_ratio_2.0/fig.png)|![](results/exp_alpha_1.0_ratio_2.0/fig.png) | ![](results/exp_alpha_1.5_ratio_2.0/fig.png)| ![](results/exp_alpha_2.0_ratio_2.0/fig.png)|
+| ratio = 0.1 | ![](results/saved/exp_alpha_0.1_ratio_0.1/fig.png) | ![](results/saved/exp_alpha_0.5_ratio_0.1/fig.png)|![](results/saved/exp_alpha_1.0_ratio_0.1/fig.png) | ![](results/saved/exp_alpha_1.5_ratio_0.1/fig.png)| ![](results/saved/exp_alpha_2.0_ratio_0.1/fig.png)|
+| ratio = 0.5 | ![](results/saved/exp_alpha_0.1_ratio_0.5/fig.png) | ![](results/saved/exp_alpha_0.5_ratio_0.5/fig.png)|![](results/saved/exp_alpha_1.0_ratio_0.5/fig.png) | ![](results/saved/exp_alpha_1.5_ratio_0.5/fig.png)| ![](results/saved/exp_alpha_2.0_ratio_0.5/fig.png)|
+| ratio = 1.0 | ![](results/saved/exp_alpha_0.1_ratio_1.0/fig.png) | ![](results/saved/exp_alpha_0.5_ratio_1.0/fig.png)|![](results/saved/exp_alpha_1.0_ratio_1.0/fig.png) | ![](results/saved/exp_alpha_1.5_ratio_1.0/fig.png)| ![](results/saved/exp_alpha_2.0_ratio_1.0/fig.png)|
+| ratio = 1.5 | ![](results/saved/exp_alpha_0.1_ratio_1.5/fig.png) | ![](results/saved/exp_alpha_0.5_ratio_1.5/fig.png)|![](results/saved/exp_alpha_1.0_ratio_1.5/fig.png) | ![](results/saved/exp_alpha_1.5_ratio_1.5/fig.png)| ![](results/saved/exp_alpha_2.0_ratio_1.5/fig.png)|
+| ratio = 2.0 | ![](results/saved/exp_alpha_0.1_ratio_2.0/fig.png) | ![](results/saved/exp_alpha_0.5_ratio_2.0/fig.png)|![](results/saved/exp_alpha_1.0_ratio_2.0/fig.png) | ![](results/saved/exp_alpha_1.5_ratio_2.0/fig.png)| ![](results/saved/exp_alpha_2.0_ratio_2.0/fig.png)|
 
 ## Using venv python library
 
